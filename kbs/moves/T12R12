@@ -1,0 +1,134 @@
+1 relay
+2 winners
+12 rounds
+DESCEND
+
+id=1204
+# $Id: T12R12 712 2011-05-24 09:26:35Z paulh $
+# A 12 table mitchell with relay
+
+# The EW move for all tables
+L1=E+
+
+# Table 1
+Table=1
+ns=1
+ew=21
+board=1
+boardcode=T11
+nscode=N=
+ewcode=$L1
+
+# Table 2
+Table=2
+ns=2
+ew=22
+board=2
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 3
+Table=3
+ns=3
+ew=23
+board=3
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+
+# Table 4
+Table=4
+ns=4
+ew=24
+board=4
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 5
+Table=5
+ns=5
+ew=25
+board=5
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 6
+Table=6
+ns=6
+ew=26
+board=6
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Relay 1
+Relay=1
+board=7
+boardcode=T6
+
+# Table 7
+Table=7
+ns=7
+ew=27
+board=8
+boardcode=R1
+nscode=N=
+ewcode=$L1
+
+# Table 8
+Table=8
+ns=8
+ew=28
+board=9
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 9
+Table=9
+ns=9
+ew=29
+board=10
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 10
+Table=10
+ns=10
+ew=30
+board=11
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+
+# Table 11
+Table=11
+ns=11
+ew=31
+board=12
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+
+# Table 12
+Table=12
+ns=12
+ew=32
+board=0
+share=1
+boardcode=T=
+nscode=N=
+ewcode=$L1
+sharecode=1
+
+
+
+rounds=12
+bpr=2

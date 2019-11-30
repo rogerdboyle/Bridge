@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}
+
+\usepackage{Roger}
+\usepackage{url}
+
+\begin{document}
+
+{\bf {\Large Abersytwyth Bridge Congress}}\\
+\ \\
+{\bf {\large 15th -- 17th August 2014}}
+
+\section{Schedule}
+\begin{center}
+\begin{tabular}{|| l | l | l | l ||}
+	\hline
+	\hline
+	M Llewelyn Jenkins Cup &
+	Mixed Pairs:
+	prize \pounds 50 &
+	Friday 7pm \\
+	\hline
+	&
+	Open Pairs:
+	prize \pounds 30 &
+	Friday 7pm \\
+	\hline
+	\hline
+	H M Stanley Cup &
+	Qualifying Pairs:
+	prize \pounds 30 &
+	Saturday 1pm \\
+	\hline
+	H M Stanley Cup &
+	Final:
+	prize \pounds 120 &
+	Saturday 4.45pm \\
+	\hline
+	&
+	Consolation Pairs:
+	prize \pounds 80 &
+	Saturday 4.45pm \\
+	\hline
+	\hline
+	Cambrian News Trophy &
+	Swiss Teams:
+	prize \pounds 160, \pounds 80, \pounds 40 &
+	Sunday 10.30am \\
+	\hline
+	&
+	Final rounds &
+	Sunday 2.30pm \\
+	\hline
+	Prize Giving & & 5.30pm\\
+	\hline
+	\hline
+\end{tabular}
+\end{center}
+
+\section{Venue}
+
+All matches will be played in Penweddig School.
+Simple refreshments will be available, but please keep them away from
+the playing area.
+
+The closest pubs (there are two) are in Llanbadarn, less than a mile
+eastward along the A44.
+
+Morrisons supermarket is about a mile away --- go east on the A44 and
+turn right on the A4120 toward Southgate and Aberteifi.  There is also
+a petrol station here.
+
+Aberystwyth town with many pubs, cafes and restaurants is about 1
+mile west along the A44 -- the persistent can usually find somewhere to
+park.
+
+\section{Problems and queries}
+
+The Congress Secretary is Roger Boyle, who will be available
+throughout.
+Telephone 0771 5049478 at any reasonable time.
+
+We hope you enjoy the Congress, and plan to return next year.
+\end{document}

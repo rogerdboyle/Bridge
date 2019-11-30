@@ -1,0 +1,127 @@
+12 Table Mitchell, 24(2) boards
+Skip after round 6
+Pairs up, boards down
+DESCEND
+
+id=1200
+# $Id: T12 902 2012-03-31 08:56:13Z phaff $
+# A 12 table mitchell.
+
+# The EW move for all tables
+L1=E+ E+ E+ E+ E+ E+2 E+ E+ E+ E+
+# Table 1
+Table=1
+ns=1
+ew=21
+board=1
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 2
+Table=2
+ns=2
+ew=22
+board=2
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 3
+Table=3
+ns=3
+ew=23
+board=3
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+
+# Table 4
+Table=4
+ns=4
+ew=24
+board=4
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 5
+Table=5
+ns=5
+ew=25
+board=5
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 6
+Table=6
+ns=6
+ew=26
+board=6
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 7
+Table=7
+ns=7
+ew=27
+board=7
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 8
+Table=8
+ns=8
+ew=28
+board=8
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 9
+Table=9
+ns=9
+ew=29
+board=9
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 10
+Table=10
+ns=10
+ew=30
+board=10
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+
+# Table 11
+Table=11
+ns=11
+ew=31
+board=11
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+
+# Table 12
+Table=12
+ns=12
+ew=32
+board=12
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+rounds=11
+maxrounds=11
+bpr=2
+rnddesc=6 Skip
+ 

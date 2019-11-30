@@ -1,0 +1,52 @@
+3 Table Howell - 2 relays, 20(4) boards
+All share boards on the last round
+DESCEND
+# $Id$
+# 3 tables, 1 winner
+#
+id=300
+# Pattern north
+Table=1
+ns=6
+ew=1
+board=1
+boardcode=R1 T- T- R2
+nscode=N=
+ewcode=N+
+nsdir=NS Stationary
+ewdir=EW goto Table 2 NS
+
+Table=2
+ns=5
+ew=2
+board=4
+boardcode=T= R1 T= T=
+nscode=N+
+ewcode=E-
+share=0
+sharecode=0 0 0 1
+nsdir=NS goto Table 3 NS
+ewdir=EW goto Table 1 EW
+
+Table=3
+ns=4
+ew=3
+board=2
+boardcode=T+ T+ R1 T=
+nscode=E=
+ewcode=E-
+share=0
+sharecode=0 0 0 1
+nsdir=NS goto EW this table
+ewdir=EW goto Table 2 EW 
+
+Relay=1
+board=3
+boardcode=T3 T2 T1 R1
+
+Relay=2
+board=5
+boardcode=R2 R2 R2 T1
+
+bpr=4
+rounds=5

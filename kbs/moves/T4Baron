@@ -1,0 +1,65 @@
+4 Table Baron Barclay - 3 relays 24(4)
+Boards shared between 1 and 2
+DESCEND
+# $Id$
+# 4 tables, two winners
+#
+id=404
+
+Table=1
+ns=8
+ew=1
+board=1
+boardcode=R3
+nscode=N=
+ewcode=N3
+
+# Table 2
+Table=2
+ns=7
+ew=5
+board=0
+boardcode=T=
+nscode=N= N= E= E4 E4
+ewcode=E4 E4 E4 E= E=
+share=1
+sharecode=1
+
+
+# Table 3
+Table=3
+ns=6
+ew=2
+board=3
+boardcode=T+
+nscode=E2 E2 N2 N2 N2
+ewcode=E1
+
+# Table 4
+Table=4
+ns=3
+ew=4
+board=2
+boardcode=T1
+nscode=E3
+ewcode=N=
+
+
+
+# Relay between tables 2 and 3
+Relay=1
+board=4
+boardcode=T3
+
+# Relay between tables 2 and 3
+Relay=2
+board=5
+boardcode=R1
+
+# Relay between tables 2 and 3
+Relay=3
+board=6
+boardcode=R2
+
+bpr=4
+rounds=6

@@ -1,0 +1,108 @@
+8 3/4 Howell - 4 relays, 24(2) boards 
+Relay between 1 and 8
+Boards down
+Used at St Sebastians
+DESCEND
+
+id=804
+# $Id$
+
+# Table 1
+Table=1
+ns=9
+ew=10
+board=1
+boardcode=R4
+nscode=E5
+ewcode=N=
+
+
+# Table 2
+Table=2
+ns=3
+ew=7
+board=2
+boardcode=T-
+nscode=E3 E3 E3 E3 E3 E3 N3 N3 N3 N3 N3
+ewcode=N4
+
+# Table 3
+Table=3
+ns=13
+ew=2
+board=3
+boardcode=T-
+nscode=N= N= N= N= N= N= E= N6 N6 N6 N6
+ewcode=E6 E6 E6 E6 E6 E6 N6 E= E= E= E=
+
+# Table 4
+Table=4
+ns=6
+ew=4
+board=4
+boardcode=T-
+nscode=E7 E7 E7 E7 E7 E7 N7 N7 N7 N7 N7
+ewcode=N2
+
+# Table 5
+Table=5
+ns=11
+ew=8
+board=5
+boardcode=T-
+nscode=E1
+ewcode=E2
+
+# Table 6
+Table=6
+ns=14
+ew=1
+board=6
+boardcode=T-
+nscode=N= N= N= N= N= N= E= E8 E8 E8 E8
+ewcode=E8 E8 E8 E8 E8 E8 E8 E= E= E= E=
+
+# Table 7
+Table=7
+ns=15
+ew=5
+board=7
+boardcode=T-
+nscode=N= N= N= N= N= N= E= E4 E4 E4 E4
+ewcode=E4 E4 E4 E4 E4 E4 E4 E= E= E= E=
+
+# Table 8
+Table=8
+ns=16
+ew=12
+# share boards with table 1x
+board=8
+boardcode=T-
+nscode=N=
+ewcode=N5
+
+
+# Relay 1
+Relay=1
+board=9
+boardcode=T8
+
+# Relay 2
+Relay=2
+board=10
+boardcode=R1
+
+# Relay 3
+Relay=3
+board=11
+boardcode=R2
+
+# Relay 4
+Relay=4
+board=12
+boardcode=R3
+
+
+rounds=12
+bpr=2
+

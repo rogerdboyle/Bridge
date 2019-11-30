@@ -1,0 +1,86 @@
+1 relay  between 3 and 4
+1 winner
+8 rounds
+Arrow switch last 2 round2
+DESCEND
+
+id=701
+
+# $Id: T7A2 710 2011-05-22 08:45:59Z root $
+# This is a 7 table, one relay, Hesitation Mitchell, last two
+# rounds arrow switched.
+ncode=N= N= N= N= N= E= N+
+ecode=E+ E+ E+ E+ E+ N+ E=
+# Table 1
+Table=1
+ns=1
+ew=8
+board=1
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+# Table 2
+Table=2
+ns=2
+ew=9
+board=2
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+# Table 3
+Table=3
+ns=3
+ew=10
+board=3
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+# Relay 1
+Relay=1
+board=4
+boardcode=T3
+
+# Table 4
+Table=4
+ns=4
+ew=11
+board=5
+boardcode=R1
+nscode=$ncode
+ewcode=$ecode
+
+# Table 5
+Table=5
+ns=5
+ew=12
+board=6
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+# Table 6
+Table=6
+ns=6
+ew=13
+board=7
+boardcode=T-
+nscode=N= N= N= N= N= E= E+
+ewcode=E+ E+ E+ E+ E+ E+ E=
+
+# Table 7
+Table=7
+ns=7
+ew=14
+board=8
+boardcode=T-
+nscode=E+ E+ E+ E+ E+ N+ N+
+ewcode=N=
+#
+bpr=3
+rounds=8
+
+
+

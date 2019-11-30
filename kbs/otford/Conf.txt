@@ -1,0 +1,227 @@
+{
+   "Conf" : {
+      "BWclub" : {
+         "comment" : "The Bridgewebs id of the club",
+         "val" : ""
+      },
+      "BWpassword" : {
+         "comment" : "The Bridgewebs password",
+         "val" : ""
+      },
+      "Bell" : {
+         "comment" : "Ring the bell when a single pair name has been selected",
+         "val" : "1"
+      },
+      "Club" : {
+         "comment" : "The name of the bridge club",
+         "val" : "Aberystwyth"
+      },
+      "Copyholder" : {
+         "comment" : "The Copyright holder",
+         "val" : ""
+      },
+      "Dbname" : {
+         "comment" : "Database file name",
+         "val" : "data.db"
+      },
+      "Div10" : {
+         "comment" : "Traveller entries are 10 times smaller on input",
+         "val" : "0"
+      },
+      "EMaster" : {
+         "comment" : "List of people that just get the result header in their email",
+         "val" : []
+      },
+      "Ea" : {
+         "commment" : "List of members that always get the result email",
+         "val" : []
+      },
+      "Eauth" : {
+         "comment" : "The authentication to use  for the result mail server",
+         "val" : ""
+      },
+      "Eauthid" : {
+         "comment" : "The authenticated user for the result email",
+         "val" : ""
+      },
+      "Eauthpwd" : {
+         "comment" : "The password for the authenticated result mail user",
+         "val" : ""
+      },
+      "Efree" : {
+         "comment" : "Hash of player ids that don't pay table money",
+         "val" : {}
+      },
+      "Efrom" : {
+         "comment" : "The 'from' address in the result email",
+         "val" : ""
+      },
+      "Email" : {
+         "comment" : "Send result email",
+         "val" : "0"
+      },
+      "Esmtphost" : {
+         "comment" : "The mail server for the result email",
+         "val" : ""
+      },
+      "Pin" : {
+         "comment" : "The pin number to unlock the Palm Biff program",
+         "val" : "0000"
+      },
+      "Qmoves" : {
+         "comment" : "The set up number for the biff Palm scoring",
+         "val" : [
+            "1000003000",
+            "1000003000",
+            "1100113000",
+            "1100313000",
+            "1100003000",
+            "1100003000",
+            "1204122000",
+            "1204322000",
+            "1204002000",
+            "1204002000",
+            "1300132000",
+            "1300332000",
+            "1300002000",
+            "1300002000",
+            "1400142000",
+            "1400342000",
+            "1400002000",
+            "1400002000",
+            "1500152000",
+            "1500352000",
+            "1500002000",
+            "1500002000",
+            "1600162000",
+            "1600362000",
+            "1600002000",
+            "1600002000",
+            "1700172000",
+            "1700372000",
+            "1700002000",
+            "1700002000",
+            "1800182000",
+            "1800382000",
+            "1800002000",
+            "1800002000"
+         ]
+      },
+      "Travsort" : {
+         "comment" : "Set to 0 to not sort the traveller entries. 1 to sort by N/S pair",
+         "val" : "1"
+      },
+      "biffdir" : {
+         "comment" : "The folder containing the session data beamed from the palms",
+         "val" : ""
+      },
+      "bridgeweb_scores" : {
+         "comment" : "Set to one if we post our results on BridgeWebs",
+         "val" : "0"
+      },
+      "compargs" : {
+         "comment" : "The default arguments to the comp.pl program",
+         "val" : [
+            "-g",
+            "-d",
+            "sess",
+            "-q",
+            "10",
+            "-y"
+         ]
+      },
+      "compdir" : {
+         "comment" : "The folder containing the competition files",
+         "val" : "comps"
+      },
+      "compqual" : {
+         "comment" : "The number of sessions to qualify for competitions",
+         "val" : ""
+      },
+      "compstartdate" : {
+         "comment" : "The start of the competition year. YYYYMMDD format",
+         "val" : ""
+      },
+      "decayby" : {
+         "comment" : "How the decayed Wilson's are determined. \"sess\" for session else time in days",
+         "val" : ""
+      },
+      "ebu_scores" : {
+         "comment" : "Set to 1 if part of Ebu's P2P scheme",
+         "val" : "0"
+      },
+      "movesdir" : {
+         "comment" : "The folder containing the movement description files",
+         "val" : "../moves"
+      },
+      "nomp" : {
+         "comment" : "Don't display Master Points in the results.",
+         "val" : ""
+      },
+      "noneuberg" : {
+         "comment" : "Set to 1 to turn off neuberg adjustments",
+         "val" : "0"
+      },
+      "png" : {
+         "comment" : "A list of personae non gratae (id from contact.csv)",
+         "val" : []
+      },
+      "resdir" : {
+         "comment" : "The folder containing the results",
+         "val" : "results"
+      },
+      "short_scores" : {
+         "comment" : "Set to 1 if we do not type in the contracts for the travellers",
+         "val" : "1"
+      }
+   },
+   "Ebu" : {
+      "enable_ngs" : {
+         "comment" : "Set to true if you want to send the traveller data to the EBU",
+         "val" : "0"
+      }
+   },
+   "Ecats" : {
+      "clubebunumber" : {
+         "comment" : "",
+         "val" : ""
+      },
+      "clubname" : {
+         "comment" : "The club name",
+         "val" : ""
+      },
+      "contactemail" : {
+         "comment" : "email address of contact person",
+         "val" : ""
+      },
+      "contactfax" : {
+         "comment" : "Contact fax number",
+         "val" : ""
+      },
+      "contactname" : {
+         "comment" : "Contact name in case of scoring issues",
+         "val" : ""
+      },
+      "contactphone" : {
+         "comment" : "Contact telephone number",
+         "val" : ""
+      },
+      "country" : {
+         "comment" : "Country of the club",
+         "val" : ""
+      },
+      "county" : {
+         "comment" : "County of the club",
+         "val" : ""
+      },
+      "programversion" : {
+         "comment" : "The name and version number of the scoring program",
+         "val" : "KBS1.2"
+      },
+      "town" : {
+         "comment" : "Town",
+         "val" : ""
+      }
+   }
+}
+

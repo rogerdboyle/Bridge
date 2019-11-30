@@ -1,0 +1,731 @@
+###################
+package Travclient;
+###################
+
+
+# $Id: Travclient.pm 850 2012-02-02 08:11:32Z phaff $
+# Copyright (c) 2010 Paul Haffenden. All rights reserved.
+
+use strict;
+use warnings;
+use integer;
+
+use Tk;
+
+use Conf;
+use lib "lib";
+use Board;
+use Result;
+use Setup;
+use Trs;
+use Movectl;
+use Confobj;
+use Sdate;
+
+
+our(@font) = (-font => "CourierNew 12 normal");
+our(@rel) = (-relief => "groove");
+
+our($rev) = <<'EOF';
+$Rev: 850 $
+EOF
+
+
+sub main
+{
+    my($mw, $dir, $goodbye) = @_;
+    my($setup);
+    my($confobj);
+    my($sdate);
+    my($tfr, $bfr);
+    my($trs);
+    my($nob);
+    my($i);
+    my($movectl);
+    my($bpr);
+
+    my($confspec) = {
+                     nstxt => undef(),
+                     ewtxt => undef(),
+                     contxt => undef(),
+                     dbltxt => undef(),
+                     bytxt => undef(),
+                     ranktxt => undef(),
+                     suittxt => undef(),
+                     tog => undef(),
+                     boardfrs => undef(),
+                     boardtxt => undef(),
+                     nob => undef(),
+                     trs => undef(),
+                     rf => undef(),
+                     travheadfrs => undef(),
+                     travfrs => undef(),
+                     travtailfr => undef(),
+                     travtxtlabs => undef(),
+                     travtxt => undef(),
+                     bn => 0,
+                     dir => undef(),
+                     errmsg => "",
+                     tfr => undef(),
+                     bfr => undef(),
+                     txtin => "",
+                     entry => undef(),
+                     validpairs => undef(),
+                     movectl => undef(),
+                     move => undef(),
+                     bpr => undef(),
+                     moveon => 1,
+                     movefromsetup => undef(),
+                     goodbye => undef(),
+                    };
+    $setup = Setup->new();
+    $confobj = Confobj->new($confspec);
+
+    # This is how we arrange our exit.
+    $confobj->set("goodbye", $goodbye);
+
+    ($rev) = $rev =~ m/(\d+)/;
+    # We write our version number into the traveller database
+    # file
+    $Trs::rev = $rev;
+
+    $setup->load($dir);
+    $bpr = $setup->bpr();
+    $confobj->set("bpr", $bpr);
+    $sdate = simpledate($dir);
+    if (!defined($sdate)) {
+        die("I've not been able to parse the date ($dir)\n");
+    }
+    $mw->title("$Conf::Club $sdate. Number of Boards: $setup->{nob}");
+
+    $trs = Trs->new();
+    $trs->load($dir, 1); # Allow '#' entires
+
+    $movectl = Movectl->new();
+    $confobj->set("movectl", $movectl);
+
+    if ($setup->{moves}) {
+        # Preset movement file
+        my($ind);
+        $ind = 0;
+        for ($i = 1; $i <= $setup->{nob}; $i += $bpr) {
+            $movectl->setboardmap($i, $bpr, $setup->{moves}->[$ind],
+                                  $Conf::Travsort);
+            $ind++;
+        }
+        # Don't reload the movectl after entering a traveller.
+        $confobj->set("movefromsetup", 1);
+    } else {
+        for ($i = 1; $i <= $setup->{nob}; $i++) {
+            if (!exists($movectl->{boardmap}->{$i})) {
+                my($movedata) = $movectl->boardmove($trs->boards->[$i - 1]);
+                if ($movedata) {
+                    $movectl->setboardmap($i, $bpr, $movedata, $Conf::Travsort);
+                }
+            }
+        }
+        $confobj->set("movefromsetup", 0);
+    }
+    $mw->title("$Conf::Club $sdate. Number of Boards: $setup->{nob}");
+
+    # We have two major frames:
+    # $tfr: the traveller frame.
+    # $bfr: the board frame.
+    $tfr = $mw->Frame();
+    $bfr = $mw->Frame();
+
+    # loadup the list of known pairs, so we can valid them
+    # during result entry.
+    my(@ranges, $r, $vp);
+    @ranges = $setup->range();
+    $vp = {};
+    foreach $r (@ranges) {
+        if (exists($vp->{$r})) {
+            die("The pair $r has been duplicated in the setup file\n");
+        }
+        $vp->{$r} = 1;
+    }
+    $confobj->set("validpairs", $vp);
+
+    $confobj->set("trs", $trs);
+    $confobj->set("tfr", $tfr);
+    $confobj->set("bfr", $bfr);
+    $confobj->set("boardtxt", {});
+    $confobj->set("dir", $dir);
+    $confobj->set("nob", $setup->{nob});
+    $confobj->set("bn", 0);
+    $confobj->set("travfrs", []);
+    $confobj->set("travtxtlabs", []);
+
+    setupboards($confobj);
+    setuptravs($confobj);
+    packboards($confobj);
+}
+
+sub setupboards
+{
+    my($confobj) = @_;
+    my($i);
+    my($fr);
+    my($but);
+    my($nob) = $confobj->get("nob");
+    my($mfr) = $confobj->get("bfr");
+    my($txthash) = $confobj->get("boardtxt");
+
+    for ($i = 1; $i <= $nob; $i++) {
+        if (!defined($fr)) {
+            $fr = $mfr->Frame();
+        }
+        $fr->pack(-side => "top");
+        $txthash->{$i} = "";
+        $but = $fr->Button(-textvar => \$txthash->{$i}, @font, -width => 8);
+        $but->configure(-command => [ \&boardset, $but, $i, $confobj ]);
+        $but->pack(-side => "left");
+        if ((($i - 1)% 4) == 3) {
+            $fr = undef();
+        }
+    }
+    $fr = $mfr->Frame();
+    $fr->pack(-side => "top");
+    my($goodbye) = $confobj->get("goodbye");
+    $but = $fr->Button(-text => "Quit", @font, -command => $goodbye);
+    $but->pack(-side => "left");
+}
+
+sub packboards
+{
+    my($confobj) = @_;
+    # just pack the frame.
+    my($fr) = $confobj->get("bfr");
+    my($trs) = $confobj->get("trs");
+    my($txthash) = $confobj->get("boardtxt");
+
+    my($cnt);
+    my($bn, $val);
+
+    while (($bn, $val) = each(%$txthash)) {
+        $cnt = numberofentries($trs, $bn);
+        $txthash->{$bn} = "$bn($cnt)";
+    }
+    $fr->pack(-side => "top");
+}
+
+sub numberofentries
+{
+    my($trs, $bn) = @_;
+    my($r);
+
+    $r = $trs->boards();
+    if (!defined($r)) {
+        return 0;
+    }
+    $r = $r->[$bn - 1];
+    if (!defined($r)) {
+        return 0;
+    }
+    return scalar(@$r);
+}
+
+sub setuptravs
+{
+    my($confobj) = @_;
+
+    my($mfr);
+    my($fr);
+    my($lab);
+    my($ent);
+    my($but);
+    my($left) = "left";
+    my($top) = "top";
+
+    $mfr = $confobj->get("tfr");
+    $fr = $mfr->Frame();
+    $fr->pack(-side => $top);
+    $lab = $fr->Label(-textvar => $confobj->getref("travtxt"), @font);
+    $lab->pack(-side => $left);
+    $but = $fr->Checkbutton(-text => "Move",
+                            -variable => $confobj->getref("moveon"),
+                           @font);
+    $but->pack(-side => $left);
+
+    $fr = $mfr->Frame();
+    $fr->pack(-side => $top);
+    $ent = $fr->Entry(-textvariable => $confobj->getref("txtin"), @font);
+    $ent->bind("<Return>" =>  [ \&enter, $confobj ]);
+    $ent->pack(-side => $left);
+    $confobj->set("entry", $ent);
+
+    $fr = $mfr->Frame();
+    $fr->pack(-side => $top);
+    $but = $fr->Label(-textvar => $confobj->getref("errmsg"), @font,
+                     -width => 40);
+    $but->pack(-side => $left);
+
+    $fr = $mfr->Frame();
+    $fr->pack(-side => $top);
+    $but = $fr->Button(-text => "Clear", @font, @rel);
+    $but->configure(-command => [ \&clearset, $but, $confobj ]);
+    $but->pack(-side => $left);
+
+    $fr = $mfr->Frame();
+    $fr->pack(-side => $top);
+    $but = $fr->Button(-text => "Done", @font, @rel);
+    $but->configure(-command => [ \&doneset, $but, $confobj ]);
+    $but->pack(-side => $left);
+
+    $fr = $mfr->Frame();
+    $fr->pack(-side => $top);
+    # The header labels.
+    $lab = $fr->Label(-text => "NS", @font, -width => 3, @rel);
+    $lab->pack(-side => $left);
+    $lab = $fr->Label(-text => "EW", @font, -width => 3, @rel);
+    $lab->pack(-side => $left);
+    $lab = $fr->Label(-text => "Contract", @font, -width => 9, @rel);
+    $lab->pack(-side => $left);
+    $lab = $fr->Label(-text => "By", @font, -width => 3, @rel);
+    $lab->pack(-side => $left);
+    $lab = $fr->Label(-text => "Lead", @font, -width => 5, @rel);
+    $lab->pack(-side => $left);
+    $lab = $fr->Label(-text => "Tricks", @font, -width => 7, @rel);
+    $lab->pack(-side => $left);
+    $lab = $fr->Label(-text => "Score", @font, -width => 6, @rel);
+    $lab->pack(-side => $left);
+    $lab = $fr->Label(-text => "NSP", @font, -width => 4, @rel);
+    $lab->pack(-side => $left);
+    $lab = $fr->Label(-text => "EWP", @font, -width => 4, @rel);
+    $lab->pack(-side => $left);
+}
+
+
+# We come here when one of the board buttons has
+# been pressed on the board selection screen.
+sub boardset
+{
+    my($but, $bn, $confobj) = @_;
+    my($bfr, $tfr);
+    my($ent);
+    my($move);
+    my($movectl);
+    my($moveon);
+    my($trs);
+
+    $bfr = $confobj->get("bfr");
+    $tfr = $confobj->get("tfr");
+
+    # First unpack the board display.
+    $bfr->packForget();
+    $confobj->set("bn", $bn);
+
+    $ent = $confobj->get("entry");
+    $ent->configure(-state => "normal");
+    $ent->focus();
+
+    # See if we have any board control info
+    # that can produce the next pairs for us.
+    $moveon = $confobj->get("moveon");
+    if ($moveon) {
+        my($np);
+        $movectl = $confobj->get("movectl");
+        $move = $movectl->{boardmap}->{$bn};
+        if ($move) {
+            $trs = $confobj->get("trs");
+            $np = $movectl->freepair($trs->boards()->[$bn - 1], $move);
+            $confobj->set("txtin", $np);
+            $ent->icursor('end');
+        }
+    }
+    packresults($bn, $confobj);
+    $tfr->pack(-side => "top");
+}
+
+sub packresults
+{
+    my($bn, $confobj) =@_;
+    my(@keys);
+    my($hr);
+    my($trs);
+    my($travfrs);
+    my($travtxtlabs);
+    my($index);
+    my($mfr);
+    my($fr);
+    my($elehr);
+    my($lab);
+    my($h);
+
+    $trs = $confobj->get("trs");
+    $travfrs = $confobj->get("travfrs");
+    $travtxtlabs = $confobj->get("travtxtlabs");
+    $mfr = $confobj->get("tfr");
+
+    $confobj->set("travtxt", "Traveller for board $bn " . Board->vulstr($bn));
+    # Setup all the results.
+    $hr = $trs->boards()->[$bn - 1];
+    Result->calculatescores($hr);
+
+    if (defined($hr)) {
+#        @keys = sort({$a <=> $b} keys(%$hr));
+        $index = 0;
+        my(@pady) = ("-pady", 4);
+        foreach $h (@$hr) {
+            if (!defined($travfrs->[$index])) {
+                $fr = $mfr->Frame();
+                push(@$travfrs, $fr);
+                $elehr =
+                     {
+                      ns => "",
+                      ew => "",
+                      con => "",
+                      by => "",
+                      tricks => "",
+                      score => "",
+                      nsp => "",
+                      ewp => "",
+                     };
+                push(@$travtxtlabs, $elehr);
+
+                $lab = $fr->Label(-textvar => \$elehr->{ns}, -width => 3,
+                            @font, @rel);
+                $lab->pack(-side => "left");
+
+                $lab->bind("<Button-1>", [ \&removetraventry, $confobj, \$elehr->{ns} ]);
+
+                $lab = $fr->Label(-textvar => \$elehr->{ew}, -width => 3,
+                            @font, @rel);
+                $lab->pack(-side => "left");
+                $lab= $fr->Label(-textvar => \$elehr->{con}, -width => 9,
+                            @font, @rel);
+                $lab->pack(-side => "left");
+                $lab = $fr->Label(-textvar => \$elehr->{by}, -width => 3,
+                            @font, @rel);
+                $lab->pack(-side => "left");
+                $lab = $fr->Label(-textvar => \$elehr->{lead}, -width => 5,
+                            @font, @rel);
+                $lab->pack(-side => "left");
+                $lab = $fr->Label(-textvar => \$elehr->{tricks}, -width => 7,
+                            @font, @rel);
+                $lab->pack(-side => "left");
+                $lab = $fr->Label(-textvar => \$elehr->{score}, -width => 6,
+                            @font, @rel);
+                $lab->pack(-side => "left");
+                $lab = $fr->Label(-textvar => \$elehr->{nsp}, -width => 4,
+                            @font, @rel);
+                $lab->pack(-side => "left");
+                $lab = $fr->Label(-textvar => \$elehr->{ewp}, -width => 4,
+                            @font, @rel);
+                $lab->pack(-side => "left");
+
+            } else {
+                $fr = $travfrs->[$index];
+                $elehr = $travtxtlabs->[$index];
+            }
+            $elehr->{ns} = $h->n();
+            $elehr->{ew} = $h->e();
+            $elehr->{con} = $h->contxt();
+            $elehr->{by} = $h->by();
+            $elehr->{lead} = $h->lead();
+            $elehr->{tricks} = $h->tricks();
+            $elehr->{score} = $h->points();
+            $elehr->{nsp} = $h->nsp();
+            $elehr->{ewp} = $h->ewp();
+            $index++;
+            $fr->pack(-side => "top");
+        }
+    }
+}
+
+sub unpackresults
+{
+    my($bn, $confobj) = @_;
+
+    my($fr);
+    my($hr);
+    my($totkeys);
+    my($index);
+    my($trs);
+    my($travfrs);
+
+    $trs = $confobj->get("trs");
+    $travfrs = $confobj->get("travfrs");
+    $hr = $trs->boards()->[$bn - 1];
+    if (defined($hr)) {
+        $totkeys = scalar(@$hr);
+        for ($index = 0; $index < $totkeys; $index++) {
+            $travfrs->[$index]->packForget();
+        }
+    }
+}
+
+# This is called when the clear button is
+# pressed on the traveller input screen.
+sub clearset
+{
+    my($but, $confobj) = @_;
+    my($entry);
+
+    $confobj->set("txtin", movetxt($confobj));
+    $entry = $confobj->get("entry");
+    $entry->icursor('end');
+}
+
+
+# This is called when the "Done" button is
+# pressed on the traveller input screen.
+
+sub doneset
+{
+    my($but, $confobj) = @_;
+
+    my($tfr, $bfr);
+    my($bn);
+    my($ent);
+    my($movefromsetup);
+
+    $bn = $confobj->get("bn");
+    $movefromsetup = $confobj->get("movefromsetup");
+
+    if (!$movefromsetup) {
+        my($move, $movectl);
+        my($movedata);
+        my($bpr);
+        my($trs);
+
+        # Set the boardmove from this entry.
+        $movectl = $confobj->get("movectl");
+        $trs = $confobj->get("trs");
+
+        $movedata = $movectl->boardmove($trs->boards()->[$bn - 1]);
+        $bpr = $confobj->get("bpr");
+        $movectl->setboardmap($bn, $bpr, $movedata, $Conf::Travsort);
+    }
+
+    # Make sure no items are on display.
+    unpackresults($bn, $confobj);
+
+    $tfr = $confobj->get("tfr");
+    # Unpack the traveller frame.
+    $tfr->packForget();
+    $confobj->set("txtin", "");
+    $confobj->set("errmsg", "");
+    $confobj->set("bn", 0);
+    $ent = $confobj->get("entry");
+    $ent->configure(-state => "disable");
+    packboards($confobj);
+}
+
+# This gets called when the enter key is pressed
+# on the traveller input screen.
+
+sub enter
+{
+    my($wig, $confobj) = @_;
+    my($inref);
+    my($in);
+    my($txt);
+    my($res);
+    my($trs);
+    my($bn);
+    my($dir);
+
+    $bn = $confobj->get("bn");
+    if (!$bn) {
+        return;
+    }
+
+    $inref = $confobj->getref("txtin");
+    $trs = $confobj->get("trs");
+
+    $in = $$inref;
+    ($txt) = $in =~ m/^\s*(\d+)\s*$/;
+    if ($txt) {
+        # A single digit has been specified.
+        # Delete it from the array, place it in the
+        # input text and redraw.
+        removetraventry($confobj, $txt);
+        return;
+    }
+
+    # Copy an existing line into the edit box.
+    ($txt) = $in =~ m/^\s*[dD](\d+)\s*$/;
+    if (defined($txt)) {
+        my($travs, $trav);
+        $travs = $trs->boards()->[$bn - 1];
+        if (defined($travs)) {
+            foreach $trav (@$travs) {
+                if ($trav->n() == $txt) {
+                    $$inref = $trav->instr();
+                    return;
+                }
+            }
+        }
+        return;
+    }
+
+    $res = Result->new($in, Board->vul($bn), $confobj->getref("errmsg"),
+                       $Conf::Div10);
+    if (!defined($res)) {
+        return;
+    }
+    # Attempt to add a new entry.
+
+    my($x);
+    my($ns);
+    my($ew);
+    my($vp);
+    my($bad) = "";
+
+    $vp = $confobj->get("validpairs");
+    $ns = $res->n();
+    $ew = $res->e();
+
+    if (!exists($vp->{$ns})) {
+        $bad = "The pair number $ns is not valid";
+    } elsif (!exists($vp->{$ew})) {
+        $bad = "The pair number $ew is not valid";
+    } else {
+        my($ha);
+        $ha = $trs->boards()->[$bn - 1];
+        if (defined($ha)) {
+            foreach $x (@$ha) {
+                if ( ($ns == $x->n()) || ($ns == $x->e())) {
+                    $bad = "Duplicate pair $ns";
+                    last;
+                }
+                if (($ew == $x->n()) || ($ew == $x->e())) {
+                    $bad = "Duplicate pair $ew";
+                    last;
+                }
+            }
+        }
+    }
+    if ($bad) {
+        $confobj->set("errmsg", $bad);
+        return;
+    }
+
+    $dir = $confobj->get("dir");
+    unpackresults($bn, $confobj);
+    my($travs);
+
+    $travs = $trs->boards();
+    if (!exists($travs->[$bn - 1])) {
+        $travs->[$bn - 1] = [];
+    }
+    my($ha);
+    $ha = $travs->[$bn - 1];
+    push(@$ha, $res);
+
+    # We need the sort order from the movement.
+    my($move);
+    my($sortkey);
+    $move = $confobj->get("movectl");
+    if (defined($move)) {
+        $sortkey = $move->{boardmap}->{$bn}->{lookup};
+        my($duff);
+        # We may add a north pair number not in the movement.
+        # So assign a large number as its sort key so it appears
+        # at the end;
+        foreach $duff (@$ha) {
+            if (!exists($sortkey->{$duff->n()})) {
+                $sortkey->{$duff->n()} = 999999;
+            }
+        }
+    }
+    if ($sortkey) {
+        $travs->[$bn - 1 ] =
+          [ sort({$sortkey->{$a->n()} <=> $sortkey->{$b->n()} ||
+                  $a->n() <=> $b ->n() } @$ha) ];
+    }
+    packresults($bn, $confobj);
+    $trs->save($dir);
+
+    # Either clear the entry, or load the pairs in.
+    $$inref = movetxt($confobj);
+
+    # Put the cursor at the end of the text.
+    my($entry);
+    $entry = $confobj->get("entry");
+    $entry->icursor('end');
+}
+
+
+sub removetraventry
+{
+    # The bind passes the widget ref in the first argument.
+    if (scalar(@_) == 3) {
+        shift(@_);
+    }
+    my($confobj, $digit) = @_;
+    my($inref);
+    my($trs);
+    my($res);
+    my($bn);
+
+    my($ind);
+    my($trav);
+    my($travs);
+
+    # From the button push we are called with a ref to the ns pair number.
+    # If called from the keyboard, then we have the number directly.
+    if (ref($digit)) {
+        $digit = $$digit;
+    }
+    $inref = $confobj->getref("txtin");
+    $trs = $confobj->get("trs");
+    $bn = $confobj->get("bn");
+
+    $travs = $trs->boards()->[$bn - 1];
+    if (defined($travs)) {
+        for ($ind = 0; $ind < @$travs; $ind++) {
+            if ($travs->[$ind]->n() == $digit) {
+                last;
+            }
+        }
+        if ($ind < @$travs) {
+            $res = $travs->[$ind];
+            unpackresults($bn, $confobj);
+            splice(@$travs, $ind, 1);
+            packresults($bn, $confobj);
+            if ($Conf::Div10 && ($res->instr() =~ m/(\d+)\s+(\d+)\s+(-{0,1}[\d]+)$/)) {
+                my($ins) = "$1 $2 " . $3 / 10;
+                $$inref = $ins;
+            } else {
+                $$inref = $res->instr();
+            }
+            # Put the cursor at the end of the text.
+            my($entry);
+            $entry = $confobj->get("entry");
+            $entry->icursor('end');
+
+            my($dir);
+            $dir = $confobj->get("dir");
+            $trs->save($dir);
+        }
+    }
+}
+
+sub movetxt
+{
+    my($confobj) = @_;
+
+    my($bn, $trs, $move, $moveon, $movectl);
+    my($txt) = "";
+
+    $moveon = $confobj->get("moveon");
+    if ($moveon) {
+        $bn = $confobj->get("bn");
+        $trs = $confobj->get("trs");
+        $movectl = $confobj->get("movectl");
+
+        $move = $movectl->{boardmap}->{$bn};
+        if ($move) {
+            $txt = $movectl->freepair($trs->boards()->[$bn - 1], $move);
+        }
+    }
+    return ($txt);
+}
+
+
+1;
+
+

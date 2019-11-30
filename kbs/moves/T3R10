@@ -1,0 +1,65 @@
+3 Table Howell with no board sharing - 7 relays, 20(4) boards
+DESCEND
+id=301
+
+Table=1
+ns=6
+ew=1
+board=1
+nscode=N1
+ewcode=E1 E2 E1 E2 E1 E2 E1 E2 E1
+boardcode=R1 R2 R2 R4 R3 R5 R5 R6 R7
+nsdir=NS Stationary
+ewdir=EW goto Table 2 EW
+
+Table=2
+ns=2
+ew=5
+board=6
+nscode=N2 E1 N2 E1 N2 E1 N2 E1 N2
+ewcode=E2 E3 E2 E3 E2 E3 E2 E3 E2
+boardcode=R5 T2 R6 T2 R7 T2 R2 T2 R4
+nsdir=NS goto Table 1 EW
+ewdir=EW goto Table 3 EW
+
+Table=3
+ns=3
+ew=4
+board=3
+nscode=N3 N2 N3 N2 N3 N2 N3 N2 N3
+ewcode=E3 N3 E3 N3 E3 N3 E3 N3 E3
+boardcode=R2 R6 R3 R1 R4 R2 R6 R3 R1
+nsdir=NS goto Table 2 NS
+ewdir=EW goto this Table NS
+
+Relay=1
+board=2
+boardcode=T1 R1 T3 R2 R1 R1 R1 T3 R2
+
+Relay=2
+board=4
+boardcode=R3 T1 R1 R3 T2 R3 R3 R1 R3
+
+Relay=3
+board=5
+boardcode=R4 R3 T1 T1 T3 R4 T2 R2 R5
+
+Relay=4
+board=7
+boardcode=R6 T3 R4 R5 R2 T1 T3 R4 T2
+
+Relay=5
+board=8
+boardcode=T2 R4 R5 T3 T1 R6 R4 R5 T3
+
+Relay=6
+board=9
+boardcode=T3 R5 R7 R6 R5 T3 T1 T1 R6
+
+Relay=7
+board=10
+boardcode=R7 R7 T2 R7 R6 R7 R7 R7 T1
+
+rounds=10
+bpr=2
+maxplay=2

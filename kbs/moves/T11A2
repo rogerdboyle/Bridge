@@ -1,0 +1,124 @@
+11 Table Hesitation Mitchell, 24(2) boards
+Relay between 5 and 6
+East/West add 11. Pairs up, boards down, arrow switch last two rounds 
+DESCEND
+
+id=1103
+# $Id$
+# An 11 hesitation table mitchell.
+
+
+ncode=N= N= N= N= N= N= N= N= N= E= N+
+ecode=E+ E+ E+ E+ E+ E+ E+ E+ E+ N+ E=
+
+# Table 1
+Table=1
+ns=1
+ew=12
+board=1
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+# Table 2
+Table=2
+ns=2
+ew=13
+board=2
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+# Table 3
+Table=3
+ns=3
+ew=14
+board=3
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+
+# Table 4
+Table=4
+ns=4
+ew=15
+board=4
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+# Table 5
+Table=5
+ns=5
+ew=16
+board=5
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+# Relay 1
+Relay=1
+board=6
+boardcode=T5
+
+
+# Table 6
+Table=6
+ns=6
+ew=17
+board=7
+boardcode=R1
+nscode=$ncode
+ewcode=$ecode
+
+# Table 7
+Table=7
+ns=7
+ew=18
+board=8
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+# Table 8
+Table=8
+ns=8
+ew=19
+board=9
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+# Table 9
+Table=9
+ns=9
+ew=20
+board=10
+boardcode=T-
+nscode=$ncode
+ewcode=$ecode
+
+# Table 10
+Table=10
+ns=10
+ew=21
+board=11
+boardcode=T-
+nscode=N= N= N= N= N= N= N= N= N= E= E+
+ewcode=E+ E+ E+ E+ E+ E+ E+ E+ E+ E+ E=
+
+
+# Table 11
+Table=11
+ns=11
+ew=22
+board=12
+boardcode=T-
+nscode=E+ E+ E+ E+ E+ E+ E+ E+ E+ N+ N+
+ewcode=N= N= N= N= N= N= N= N= N= N= N=
+
+rounds=12
+bpr=2
+rnddesc=10 Arrow switch last two rounds (not table 11)
+ 

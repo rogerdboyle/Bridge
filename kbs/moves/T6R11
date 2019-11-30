@@ -1,0 +1,103 @@
+6 Table Howell - 5 relays, 22(2) boards
+Global relays.
+DESCEND
+# $Id: T6R11 991 2012-10-27 15:30:59Z phaff $
+# 6 tables, one winner.
+# Used at Scout hut.
+# The id of the movement.
+id=601
+
+# Table 1
+Table=1
+ns=12
+ew=1
+board=1
+boardcode=T6
+nscode=N=
+ewcode=N3
+nsdir=NS Stationary
+ewdir=EW goto Table 3 NS
+
+# Relay 1
+Relay=1
+board=2
+boardcode=T1
+
+# Relay 2
+Relay=2
+board=3
+boardcode=R1
+
+# Table 2
+Table=2
+ns=6
+ew=7
+board=4
+boardcode=R2
+nscode=E5
+ewcode=N2
+nsdir=NS goto Table 5 EW
+ewdir=EW goto Table 2 NS
+
+# Relay 3
+Relay=3
+board=5
+boardcode=T2
+
+# Table 3
+Table=3
+ns=11
+ew=4
+board=6
+boardcode=R3
+nscode=N6
+ewcode=N4
+nsdir=NS goto Table 6 NS
+ewdir=EW goto Table 4 NS
+
+
+# Relay 4
+Relay=4
+board=7
+boardcode=T3
+
+# Table 4
+Table=4
+ns=3
+ew=9
+board=8
+boardcode=R4
+nscode=N5
+ewcode=E6
+nsdir=NS goto Table 5 NS
+ewdir=EW goto Table 6 EW
+
+# Table 5
+Table=5
+ns=2
+ew=5
+board=9
+boardcode=T4
+nscode=E1
+ewcode=E3
+nsdir=NS goto Table 1 EW
+ewdir=EW goto Table 3 EW
+
+# Relay 5
+Relay=5
+board=10
+boardcode=T5
+
+# Table 6
+Table=6
+ns=10
+ew=8
+board=11
+boardcode=R5
+nscode=E4
+ewcode=E2
+nsdir=NS goto Table 4 EW
+ewdir=EW goto Table 2 EW
+
+bpr=2
+rounds=11

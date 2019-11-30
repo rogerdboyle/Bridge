@@ -1,0 +1,71 @@
+6 Table Reduced Howell - 27(3) boards
+3 relays between 1 and 6.
+DESCEND
+# $Id$
+# 6 tables, one winner.
+# 9 rounds, used at Otford. 
+# The id of the movement.
+id=603
+
+Table=1
+ns=12
+ew=1
+board=1
+boardcode=R3
+nscode=N=
+ewcode=N5
+
+Table=2
+ns=11
+ew=4
+board=2
+boardcode=T-
+nscode=N= N= E= E6 E6 N= E= E6
+ewcode=E6 E6 E6 E= N= E6 E6 E=
+
+Table=3
+ns=10
+ew=8
+board=3
+boardcode=T-
+nscode=N= E= E4 E4 N= E= E4 E4
+ewcode=E4 E4 E= N= E4 E4 E= E=
+
+Table=4
+ns=2
+ew=7
+board=4
+boardcode=T-
+nscode=E1
+ewcode=E5
+
+Table=5
+ns=9
+ew=6
+board=5
+boardcode=T-
+nscode=E3 N3 N3 E3 E3 N3 N3 N3
+ewcode=N6
+
+Table=6
+ns=5
+ew=3
+board=6
+boardcode=T-
+nscode=E2 E2 N2 N2 E2 E2 N2 N2
+ewcode=N4
+
+Relay=1
+board=7
+boardcode=T6
+
+Relay=2
+board=8
+boardcode=R1
+
+Relay=3
+board=9
+boardcode=R2
+
+bpr=3
+rounds=9

@@ -1,0 +1,57 @@
+4 Table Mitchell Share and relay  - 1 relay, 20(5) boards
+One relay between table 2 and 3.
+Boards move down.
+Boards shared between 1 and 4
+DESCEND
+# $Id$
+# 4 tables, two winners
+#
+id=402
+# Pattern north
+# Table 1
+Table=1
+ns=1
+ew=11
+board=1
+boardcode=T3
+nscode=N=
+ewcode=E+
+
+# Table 2
+Table=2
+ns=2
+ew=12
+board=2
+boardcode=T-
+nscode=N=
+ewcode=E+
+
+# Relay between tables 2 and 3
+Relay=1
+board=3
+boardcode=T2
+
+
+
+# Table 3
+Table=3
+ns=3
+ew=13
+board=4
+boardcode=R1
+nscode=N=
+ewcode=E+
+
+# Table 4
+Table=4
+ns=4
+ew=14
+board=0
+share=1
+boardcode=T-
+nscode=N=
+ewcode=E+
+sharecode=1
+
+bpr=5
+rounds=4

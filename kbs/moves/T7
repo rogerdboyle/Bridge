@@ -1,0 +1,122 @@
+7 Table Howell - 6 relays, 26(2) boards
+6 relays between table 1 and 7
+Boards move down.
+DESCEND
+
+id=702
+
+# $Id: T7 991 2012-10-27 15:30:59Z phaff $
+# This is a 7 table, 6 relays, Howell
+#
+# Table 1
+Table=1
+ns=8
+ew=13
+board=1
+boardcode=R6
+nscode=E5
+ewcode=E7
+nsdir=NS goto Table 5 EW
+ewdir=EW goto Table 7 EW
+
+# Table 2
+Table=2
+ns=2
+ew=5
+board=2
+boardcode=T-
+nscode=E4
+ewcode=N6
+nsdir=NS goto Table 4 EW
+ewdir=EW goto Table 6 NS
+
+# Table 3
+Table=3
+ns=9
+ew=11
+board=3
+boardcode=T-
+nscode=N1
+ewcode=E6
+nsdir=NS goto Table 1 NS
+ewdir=EW goto Table 6 EW
+
+# Table 4
+Table=4
+ns=14
+ew=1
+board=4
+boardcode=T-
+nscode=N=
+ewcode=E1
+nsdir=NS Stationary
+ewdir=EW goto Table 1 EW
+
+# Table 5
+Table=5
+ns=6
+ew=7
+board=5
+boardcode=T-
+nscode=E2
+ewcode=N5
+nsdir=NS goto Table 2 EW
+ewdir=EW goto Table 5 NS
+
+# Table 6
+Table=6
+ns=4
+ew=10
+board=6
+boardcode=T-
+nscode=N7
+ewcode=N3
+nsdir=NS goto Table 7 NS
+ewdir=EW goto Table 3 NS
+
+# Table 7
+Table=7
+ns=3
+ew=12
+board=7
+boardcode=T-
+nscode=N2
+ewcode=E3
+nsdir=NS goto Table 2 NS
+ewdir=EW goto Table 3 EW
+#
+
+bpr=2
+rounds=13
+
+# Relay 1
+Relay=1
+board=8
+boardcode=T7
+
+# Relay 2
+Relay=2
+board=9
+boardcode=R1
+
+# Relay 3
+Relay=3
+board=10
+boardcode=R2
+
+# Relay 4
+Relay=4
+board=11
+boardcode=R3
+
+# Relay 5
+Relay=5
+board=12
+boardcode=R4
+
+# Relay 6
+Relay=6
+board=13
+boardcode=R5
+
+

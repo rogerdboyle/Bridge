@@ -1,0 +1,173 @@
+0 relays
+2 winners
+7 rounds
+DESCEND
+
+id=1501
+
+# $Id$
+# A 15 table parallel mitchell.
+
+# The EW move for all tables
+L1=E+2 E+2 E+2 E+4 E+2 E+2
+B1=T-2
+
+# Table 1
+Table=1
+ns=1
+ew=21
+board=1
+boardcode=T15 T15 T15 T15 T15 T15
+nscode=N=
+ewcode=$L1
+
+# Table 2
+Table=2
+ns=2
+ew=22
+board=0
+boardcode=0
+share=1
+sharecode=1
+nscode=N=
+ewcode=E+2
+
+# Table 3
+Table=3
+ns=3
+ew=23
+board=2
+boardcode=$B1
+nscode=N=
+ewcode=$L1
+
+# Table 4
+Table=4
+ns=4
+ew=24
+board=0
+boardcode=0
+share=3
+sharecode=3 3 3 3 3 5
+nscode=N=
+ewcode=E+2
+
+# Table 5
+Table=5
+ns=5
+ew=25
+board=3
+boardcode=$B1
+nscode=N=
+ewcode=$L1
+
+# Table 6
+Table=6
+ns=6
+ew=26
+board=0
+boardcode=0
+share=5
+sharecode=5 5 5 5 7 7
+nscode=N=
+ewcode=E+2
+
+# Table 7
+Table=7
+ns=7
+ew=27
+board=4
+boardcode=$B1
+nscode=N=
+ewcode=$L1
+
+# Table 8
+Table=8
+ns=8
+ew=28
+board=0
+boardcode=0
+share=7
+sharecode=7 7 7 9 9 9
+nscode=N=
+ewcode=E+2
+
+# Table 9
+Table=9
+ns=9
+ew=29
+board=5
+boardcode=$B1
+nscode=N=
+ewcode=$L1
+
+# Table 10
+Table=10
+ns=10
+ew=30
+board=0
+boardcode=0
+share=9
+sharecode=9 9 11 11 11 11
+nscode=N=
+ewcode=E+2
+
+
+# Table 11
+Table=11
+ns=11
+ew=31
+board=6
+boardcode=$B1
+nscode=N=
+ewcode=$L1
+
+
+# Table 12
+Table=12
+ns=12
+ew=32
+board=0
+boardcode=0
+share=11
+sharecode=11 13 13 13 13 13
+nscode=N=
+ewcode=E+2
+
+
+# Table 13
+Table=13
+ns=13
+ew=33
+board=7
+boardcode=$B1
+nscode=N=
+ewcode=E15 E15 E15 E1 E15 E15
+
+# Table 14
+Table=14
+ns=14
+ew=34
+board=0
+boardcode=0
+share=13
+sharecode=15 15 15 15 15 15
+nscode=N=
+ewcode=E2 E2 E2 E2 E2 E2
+
+# Table 15
+Table=15
+ns=15
+ew=35
+board=8
+boardcode=$B1
+nscode=N=
+ewcode=E1 E1 E1 E3 E1 E1
+
+rounds=7
+maxrounds=7
+bpr=3
+
+
+
+ 

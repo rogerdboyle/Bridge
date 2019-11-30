@@ -1,0 +1,86 @@
+6 Table Howell - 5 relays, 22(2) boards
+Used at StSebastians
+DESCEND
+# $Id$
+# 6 tables, one winner.
+# The id of the movement.
+id=605
+
+# Table 1
+Table=1
+ns=12
+ew=1
+board=1
+boardcode=R1
+nscode=N=
+ewcode=E4
+
+# Table 2
+Table=2
+ns=6
+ew=9
+board=2
+boardcode=T1
+nscode=N3
+ewcode=E5
+
+Relay=2
+board=3
+boardcode=T2
+
+# Table 3
+Table=3
+ns=5
+ew=3
+board=4
+boardcode=R2
+nscode=N5
+ewcode=N6
+
+
+# Table 4
+Table=4
+ns=10
+ew=11
+board=5
+boardcode=T3
+nscode=E2
+ewcode=N=
+
+# Table 5
+Table=5
+ns=4
+ew=8
+board=6
+boardcode=T4
+nscode=E3
+ewcode=E6
+
+Relay=3
+board=7
+boardcode=T5
+
+Relay=4
+board=8
+boardcode=R3
+
+Relay=5
+board=9
+boardcode=R4
+
+# Table 6
+Table=6
+ns=2
+ew=7
+board=10
+boardcode=R5
+nscode=E1
+ewcode=N2
+
+Relay=1
+board=11
+boardcode=T6
+
+
+bpr=2
+rounds=11

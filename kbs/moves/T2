@@ -1,0 +1,42 @@
+2 Table Howell - 2 relays, 18(6) boards
+Share boards on all rounds
+DESCEND
+# $Id: T2 794 2011-10-29 15:38:39Z phaff $
+# 2 tables, one winner
+#
+id=200
+# Table 1
+Table=1
+ns=4
+ew=1
+board=1
+boardcode=R1
+nscode=N=
+ewcode=E+
+nsdir=NS Stationary
+ewdir=EW goto Table 2 EW
+
+# Table 2
+Table=2
+ns=2
+ew=3
+board=0
+boardcode=T1
+nscode=E-
+ewcode=N=
+share=1
+sharecode=1
+nsdir=NS goto Table 1 EW
+ewdir=EW goto Table 2 NS
+
+# Relay 1
+Relay=1
+board=3
+boardcode=R2
+# Relay 2
+Relay=2
+board=2
+boardcode=T1
+
+bpr=6
+rounds=3

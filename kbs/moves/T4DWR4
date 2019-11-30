@@ -1,0 +1,72 @@
+4 Table Double Weave Mitchell, 20(5) boards
+Starting odd tables ew pairs down, boards up
+Starting even tables ew pairs up, boards down
+Special move between round 2 and 3 boards swap between:
+1-3, 2-4
+DESCEND
+
+id=401
+# $Id$
+# A 4 table double weave mitchell
+
+# EW move for odd tables
+EO=E- E+ E-
+# EW move foor even tables
+EE=E+ E- E+
+
+# Board movement for odd tables
+BO=T+ T+2 T+
+# Board movement for even tables
+BE=T- T+2 T-
+
+EWDIR=Odd pairs down, even pairs up.
+NSDIR=Stationary, boards go opposite direction from EW pair.
+
+# Table 1
+Table=1
+ns=1
+ew=11
+board=1
+boardcode=$BO
+nscode=N=
+ewcode=$EO
+nsdir=$NSDIR
+ewdir=$EWDIR
+
+# Table 2
+Table=2
+ns=2
+ew=12
+board=2
+boardcode=$BE
+nscode=N=
+ewcode=$EE
+nsdir=$NSDIR
+ewdir=$EWDIR
+
+# Table 3
+Table=3
+ns=3
+ew=13
+board=3
+boardcode=$BO
+nscode=N=
+ewcode=$EO
+nsdir=$NSDIR
+ewdir=$EWDIR
+
+
+# Table 4
+Table=4
+ns=4
+ew=14
+board=4
+boardcode=$BE
+nscode=N=
+ewcode=$EE
+nsdir=$NSDIR
+ewdir=$EWDIR
+
+rounds=4
+bpr=5
+rnddesc=2 Swap boards with table 2 places away

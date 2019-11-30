@@ -1,0 +1,113 @@
+10 Table Bowman, 24(3) boards
+Skip after round 4
+Pairs up, boards down. E/W sitout table 10
+DESCEND
+
+id=1002
+# $Id: T10Bow 902 2012-03-31 08:56:13Z phaff $
+# This is an 10 table Bowman, with a skip after round 4. 
+#
+
+# Shared lines.
+# This will be substituted when we see a value like '$L1' below
+# in the ewcode lines.
+L1=E+ E+ E+ E+2 E+ E+ E+
+
+
+# Table 1
+Table=1
+ns=1
+ew=11
+board=1
+boardcode=T8
+nscode=N=
+ewcode=$L1
+
+# Table 2
+Table=2
+ns=2
+ew=12
+board=2
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 3
+Table=3
+ns=3
+ew=13
+board=3
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+
+# Table 4
+Table=4
+ns=4
+ew=14
+board=4
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 5
+Table=5
+ns=5
+ew=15
+board=5
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 6
+Table=6
+ns=6
+ew=16
+board=6
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 7
+Table=7
+ns=7
+ew=17
+board=7
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 8
+Table=8
+ns=8
+ew=18
+board=8
+boardcode=T-
+nscode=N=
+ewcode=$L1
+
+# Table 9
+Table=9
+ns=9
+ew=19
+board=0
+boardcode=T=
+nscode=N=
+ewcode=$L1
+share=1
+sharecode=1
+
+# Table 10
+Table=10
+ns=10
+ew=20
+board=0
+boardcode=T=
+nscode=N=
+ewcode=$L1
+
+rounds=8
+bpr=3
+rnddesc=4 Skip
+
